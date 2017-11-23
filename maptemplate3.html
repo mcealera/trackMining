@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Analitycs</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/resume.min.css" rel="stylesheet">
+
+        <style>
+       #map {
+        height: 100vh;
+        width: 100%;
+       }
+
+        #legend {
+        font-family: Arial, sans-serif;
+        background: #fff;
+        padding: 10px;
+        margin: 10px;
+        border: 3px solid #000;
+      }
+      #legend h3 {
+        margin-top: 0;
+      }
+      #legend img {
+        vertical-align: middle;
+      }
+
+       ul {
+   list-style: none;
+}
+
+       li {
+   list-style: none;
+   display:inline;
+}
+
+         .h3color{
+    color: #337AB7;
+}
+         .h3bordercolor{
+    color: #337AB7;
+}
+        .h3colorSmall{
+    color: #337AB7;
+    font-size: 1em;
+}
+        .navbar-btn {
+      width: 255px; 
+      margin-right: 5px;
+    }
+    .floatleft {
+    float:left;
+}
+.icon-car {
+  background-image: url('../fonts/icon.png');
+  background-position: center center;
+  height: 14px;
+  width: 14px;
+}
+    .navbar-default { border-color: pink !important; }
+/* Title */
+.navbar-brand {
+    color: #337AB7;
+}
+
+.ico-text {
+     display:inline-block;
+  vertical-align: 10px;
+}
+ul li {display: inline-block; float: left; text-align: left; }
+.navbar-brand:hover,
+.navbar-brand:focus {
+    color: #337AB7;
+}
+    </style>
+
+  </head>
+
+  <body id="page-top">
+
+  <nav class="navbar bg-dark fixed-top" id="sideNav2">
+
+    <div class="nav navbar-left" id="myGroup">
+      <button  type="button" class="btn btn-info bg-dark navbar-btn myButton" data-toggle="collapse" data-target="#demo3">Tracks</button>
+       <button  type="button" class="btn btn-info bg-dark navbar-btn myButton" data-toggle="collapse" data-target="#demo3" autofocus="true" >Tracks</button>
+        <button  type="button" class="btn btn-info bg-dark navbar-btn myButton" data-toggle="collapse" data-target="#demo5">Clusters</button>
+        <button  type="button" class="btn btn-info bg-dark navbar-btn myButton" data-toggle="collapse" data-target="#demo2">Predictions</button>
+        <button  type="button" class="btn btn-info bg-dark navbar-btn myButton" data-toggle="collapse" data-target="#demo6">Patterns & Anomalies</button>
+    </div>
+
+    <ul class="nav navbar-right">
+         <li><a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="The geographic area selected for the analysis." href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;</li>
+       <li>Focus area:&emsp;</li>
+        
+      <li class="dropdown">
+        <a class="dropdown-toggle h3color" data-toggle="dropdown" href="#">Romania
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#" class="h3color">Romania</a></li>
+        </ul>
+      </li>
+  
+    </ul>
+
+    <ul class="nav navbar-right">
+             <li><a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="The most recent update to track data." href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;</li>
+      <li>Updated @updated</li>
+    </ul>
+
+  </nav>
+
+    <nav class="navbar navbar-expand-lg bg-dark fixed-top" id="sideNav">
+
+    <div class="navbar-header">
+      <u><a class="navbar-brand" href="#">Analytics Dashboard</a></u>
+    </div>
+
+    <div class="btn-group-vertical btn-block accordition-group">
+
+
+        <div id="demo3" class="collapse show text-left">  
+          <div class="text-center h3color">Track Information<br></div>
+        <br>Dataset Size: @trackNumber tracks &emsp;&emsp;&emsp;
+        <br>Oldest Track: @oldest
+        <br>Newest Track: @newest
+        <br>Days: @days
+        <br>Avg. Tracks per Day: @trackperday
+        <br> <a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="The ratio of hostile tracks to the total number of tracks" href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;Hostility Rate: @hostilityRate %
+        <br><div class="text-left" >
+          <div id="piechart"></div> 
+          <div id="hostility_div"></div>
+          <div id="weather_div"></div>
+
+        </div> 
+        </div>
+
+        <div id="demo5" class="collapse text-left">
+          <div class="text-center h3color"> <a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="Machine-learning assisted track clustering and zoning, using EM (Expectation Maximization) and QuickHull algorithms" href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;Clustering Information<br></div>
+          <br>Number of Clusters: @numClusters   
+          <br>Avg. tracks per cluster: @avgTrackCluster
+          <br>
+          <br><label><input id="chk1" type="checkbox" checked data-toggle="toggle"> Show Hot Zones &emsp;&emsp; &emsp; &emsp; &emsp; </label>
+          <br>
+          <br>
+          <div class="text-left" >
+          <div id="clusterChart"></div> 
+          <div id="clusterHostilityData"></div> 
+        </div> 
+        </div>
+
+          <div id="demo6" class="collapse text-left">
+          <div class="text-center h3color">Patterns & Anomalies<br></div>
+      <br>
+      <ul class="nav navbar-left">
+
+      <li><a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="Outliers are data objects that do not comply with the general behavior of model of data. Outlier sensitivy is the variation, compared to the average calculated for the selected data, that will define an outlier." href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;</li>
+
+       <li>Outlier sensitivity:&emsp;&emsp;</li>
+
+      <li class="dropdown">
+        <a class="dropdown-toggle h3color" data-toggle="dropdown" href="#">20%
+          <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li class="text-right"><a href="#" class="h3color">20%</a></li>
+        </ul>
+      </li>
+    </ul>
+      <ul class="nav navbar-left">
+      <li><a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="The time period used in the analysis." href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;</li>
+       <li>Period: &emsp;</li>
+      <li class="dropdown">
+        <a class="dropdown-toggle h3color" data-toggle="dropdown" href="#">All time(@days days)
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#" class="h3color">All time(@days days)</a></li>
+        </ul>
+      </li>
+     
+    </ul>
+
+          <br><a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="Can refer to activity (track numbers), hostility, speed, duration, distance or time" href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;Possisble anomalies in:&emsp;&emsp; &emsp;
+          <br>@patterns
+
+    
+        </div>
+
+        <div id="demo2" class="collapse text-left">
+          <div class="text-center h3color">Predicted Activity<br></div>
+          <br>
+           <div class="text-left h3color">
+            <a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="Prediction based on historical day-of-week activity, sector(cluster) activity and hostility and forecasted weather" href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;Tomorrow</div>
+            Weather Forecast: @forecast
+            <br>Estimated Tracks: @nextDayTracks
+            <br>
+            <div id="chart_div"></div>
+            <br><label><input id="chk2" type="checkbox" data-toggle="toggle"> Show Estimated Hot Zones</label>
+          <br><br>
+           <div class="text-left h3color">Next Week</div>
+          Estimated Tracks: @nextWeekTracks
+            <br><label><input id="chk3" type="checkbox" data-toggle="toggle"> Show Estimated Hot Zones</label>
+            <br><br>
+        </div>
+
+
+
+      </div>
+    </nav>
+    
+    <div id="map" class="container-fluid p-0 bg-dark"></div>
+     <div id="legend"><h3>Clusters</h3></div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="https://github.com/HubSpot/tether/blob/master/dist/js/tether.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/resume.min.js"></script>
+
+ <script>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          fullscreenControl: true,
+          center: {lat: 45.5405032, lng: 25.1037597}
+        });
+
+        var polygons =[];
+        var predPolygons =[];
+
+          var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+        var icons = {
+          parking: {
+            name: 'Historical',
+            icon: 'fonts/red.png'
+          },
+          library: {
+            name: 'Tomorrow',
+            icon: 'fonts/blue.png'
+          },
+          info: {
+            name: 'Next week',
+            icon: 'fonts/green.png'
+          }
+        };
+
+         var legend = document.getElementById('legend');
+        for (var key in icons) {
+          var type = icons[key];
+          var name = type.name;
+          var icon = type.icon;
+          var div = document.createElement('div');
+          div.innerHTML = '<br><img src="' + icon + '"> ' + name+'<br>';
+          legend.appendChild(div);
+        }
+
+        map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
+
+
+@areas
+@predAreas
+
+
+
+$('#clusterButton').on('click', function (e) {
+
+    bermudaTriangle.setMap(null);
+})
+
+$(".myButton").click( function(e) {
+    jQuery('.collapse').collapse('hide');
+});
+
+$(".nav a").on("click", function(){
+   $(".nav").find(".active").removeClass("active");
+   $(this).parent().addClass("active");
+});
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+
+
+
+
+  /** @this {google.maps.Polygon} */
+      function showArrays(event) {
+
+        var contentString = '<b>'+this.id+'</b><br>' +
+            '<br>'+
+            'Number of tracks: '+this.trkNumber+
+            '<br>'+
+            '<br>'+
+            'Hostile: '+this.hostileCount+ 
+            '<br>'+
+            'Friendly: '+this.friendlyCount+ 
+            '<br>'+
+            'Neutral: '+this.neutralCount+ 
+            '<br>'+
+            '<br>'+
+            'Hostility: '+this.hostility.toFixed(1)+ ' %'+
+            '<br>'+
+            '<br>'+
+            'Surface area: '+(google.maps.geometry.spherical.computeArea(this.getPath())/1000000).toFixed(1)+ ' Square Kms'+
+            '<br>'+
+            '<br>'+
+            'Avg. Track Speed: '+this.avgSpeed.toFixed(2)+ ' m/s'+
+            '<br>'+
+            'Avg. Track Length: '+(this.avgDist/1000).toFixed(0)+ ' Km'+
+            '<br>'+
+            'Avg. Track Duration: '+(this.avgDur/60).toFixed(0)+' min'+
+            '<br>'+
+            '<br>'+
+            'Clicked location: <br>' + 'Latitude: ' + event.latLng.lat().toFixed(3) + '<br> Longitude: ' + event.latLng.lng().toFixed(3);
+
+
+            
+
+        // Replace the info window's content and position.
+        infoWindow.setContent(contentString);
+        infoWindow.setPosition(event.latLng);
+
+        infoWindow.open(map);
+      }
+
+
+          function showArrays2(event) {
+
+        var contentString = '<b>'+this.id+' (predicted)'+'</b><br>' +
+            '<br>'+
+            'Estimation: '+this.estNumTracks.toFixed(0)+ ' track(s)'+  
+            '<br>'+
+              this.trkNumber.toFixed(2)+ ' % of predicted tracks.' +       
+            '<br>'+
+            '<br>'+
+            'Surface area: '+(google.maps.geometry.spherical.computeArea(this.getPath())/1000000).toFixed(1)+ ' Square Kms'+
+            '<br>'+  
+            '<br>'+
+            'Avg. Track Speed: '+this.avgSpeed.toFixed(2)+ ' m/s'+
+            '<br>'+
+            'Avg. Track Length: '+(this.avgDist/1000).toFixed(0)+ ' Km'+
+            '<br>'+
+            'Avg. Track Duration: '+(this.avgDur/60).toFixed(0)+' min'+
+            '<br>'+
+            '<br>'+
+            'Clicked location: <br>' + 'Latitude: ' + event.latLng.lat().toFixed(3) + '<br> Longitude: ' + event.latLng.lng().toFixed(3);
+
+        // Replace the info window's content and position.
+        infoWindow.setContent(contentString);
+        infoWindow.setPosition(event.latLng);
+
+        infoWindow.open(map);
+      }
+
+      $('#chk1').change(function() {
+
+        if($(this).prop('checked')){
+        for(i=0; i<polygons.length;i++){
+          polygons[i].setMap(map);
+        }}
+        else{
+           for(i=0; i<polygons.length;i++){
+          polygons[i].setMap(null);
+        }
+        }
+})
+
+           $('#chk2').change(function() {
+
+        if($(this).prop('checked')){
+        for(i=0; i<predPolygons.length;i++){
+          predPolygons[i].setMap(map);
+        }}
+        else{
+           for(i=0; i<predPolygons.length;i++){
+          predPolygons[i].setMap(null);
+        }
+        }
+})
+
+
+
+
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawClusterHostility);
+    google.charts.setOnLoadCallback(drawClusterChart);
+
+      function drawClusterChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Cluster', 'Count']
+       @clusterChartData
+        ]);
+
+        var options = {
+            title: 'Tracks by Cluster',
+          backgroundColor: 'transparent',
+          legend:{position:'labeled',textStyle: {color: '#fff'}},
+          pieSliceText: 'none',
+          'width': 230,
+               'height': 240,
+               'chartArea': {'width': '100%', 'height': '80%'},
+               pieHole: 0.4,
+               titleTextStyle: {
+    color: '#337AB7'
+}
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('clusterChart'));
+
+
+google.visualization.events.addListener(chart, 'select', selectHandler);
+      chart.draw(data, options);
+
+
+
+ function selectHandler() {
+    var selectedItem = chart.getSelection()[0];
+    if (selectedItem) {
+      var value = data.getValue(selectedItem.row, 0);
+    
+
+      for(i=0; i<polygons.length;i++){
+        polygons[i].setOptions({strokeWeight: 2.0}); 
+          if(polygons[i].id==value){
+            polygons[i].setOptions({strokeWeight: 6.0});       
+          }
+        }
+
+    }
+  }
+
+
+}
+
+
+
+    function drawClusterHostility() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Cluster');
+      data.addColumn('number', 'Hostility');
+
+       var data = google.visualization.arrayToDataTable([
+         ['Cluster', 'Track(s)',{role: 'annotation'}]
+         @chartHostilityData
+      ]);
+
+    var formatter = new google.visualization.NumberFormat({ pattern:'#%' });
+    formatter.format(data, 1);
+
+      var options2 = {
+      title: 'Hostility by cluster',
+       backgroundColor: 'transparent',
+        'chartArea': {'width': '100%', 'height': '80%'},
+        'width': 230,
+         legend:{position:'none'},
+        'height': 240,
+         hAxis: {  textStyle:{color: '#FFF'},format: '#%' },
+         titleTextStyle: {
+        color: '#337AB7'
+}
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById('clusterHostilityData'));
+
+
+   
+
+      google.visualization.events.addListener(chart, 'select', selectHandler);
+      chart.draw(data, options2);
+
+
+
+ function selectHandler() {
+    var selectedItem = chart.getSelection()[0];
+    if (selectedItem) {
+      var value = data.getValue(selectedItem.row, 0);
+    
+
+      for(i=0; i<polygons.length;i++){
+        polygons[i].setOptions({strokeWeight: 2.0}); 
+          if(polygons[i].id==value){
+            polygons[i].setOptions({strokeWeight: 6.0});       
+          }
+        }
+
+    }
+  }
+
+
+    }
+
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRCWF1itBJ2QzYFVZnFvggBqzPykiIKNo&callback=initMap">
+    </script>
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Day', 'Count'],
+          ['Mon', @monCount],
+          ['Tue', @tueCount],
+          ['Wed', @wedCount],
+          ['Thu', @thuCount],
+          ['Fri', @friCount],
+          ['Sat', @satCount],
+          ['Sun', @sunCount]
+        ]);
+
+        var options = {
+            title: 'Tracks by Day',
+          backgroundColor: 'transparent',
+          legend:{position:'none'},
+          'width': 230,
+               'height': 230,
+               'chartArea': {'width': '100%', 'height': '80%'},
+               pieHole: 0.4,
+               titleTextStyle: {
+    color: '#337AB7'
+}
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+}
+      
+    </script>
+
+     <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+     
+      
+    </script>
+
+
+
+  <script type="text/javascript">
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart2);
+
+    function drawChart2() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('timeofday', 'Time of Day');
+      data.addColumn('number', 'Tracks');
+
+       var data = google.visualization.arrayToDataTable([
+        ['Hour', 'Track(s)'],
+         ['00:00', @02], 
+         ['02:00', @24],            // RGB value
+         ['04:00', @46],            // English color name
+         ['06:00', @68],
+       ['08:00', @810 ],
+       ['10:00', @1012],
+       ['12:00', @1214 ],
+       ['14:00', @1416 ],
+       ['16:00', @1618 ],
+       ['18:00', @1820 ],
+       ['20:00', @2022],
+       ['22:00', @2224]
+      ]);
+
+    var options2 = {
+      title: 'Probability by hour',
+       backgroundColor: 'transparent',
+        'chartArea': {'width': '82%', 'height': '75%'},
+        'width': 250,
+         legend:{position:'none'},
+        'height': 240,
+         vAxis: {  textStyle:{color: '#FFF'},viewWindowMode: 'pretty', slantedText: true },
+         hAxis: {  textStyle:{color: '#FFF'},viewWindowMode: 'pretty', slantedText: true },
+         titleTextStyle: {
+        color: '#337AB7'
+},
+ seriesType: 'bars',
+      series: {1: {type: 'line'}}
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+
+      chart.draw(data, options2);
+    }
+</script>
+
+<script type="text/javascript">
+
+        google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart3);
+
+    function drawChart3() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Weather');
+      data.addColumn('number', 'Tracks');
+
+       var data = google.visualization.arrayToDataTable([
+          ['Hour', 'Track(s)'],
+         ['Sunny', @sunnyCount], 
+         ['Overcast', @overcastCount],            // RGB value
+         ['Rainy', @rainyCount]
+      ]);
+
+      var options2 = {
+      title: 'Tracks by Weather Conditions',
+       backgroundColor: 'transparent',
+                titlePosition: 'center',
+        legend:{position:'none'},
+        'chartArea': {'width': '100%', 'height': '80%'},
+        'width': 230,
+        'height': 230,
+         hAxis: {  textStyle:{color: '#FFF'} },
+         titleTextStyle: {
+    color: '#337AB7'
+}
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('weather_div'));
+
+      chart.draw(data, options2);
+    }
+</script>
+
+
+
+
+<script type="text/javascript">
+
+ 
+
+
+
+
+
+
+</script>
+
+
+<script type="text/javascript">
+
+        google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart4);
+
+    function drawChart4() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Weather');
+      data.addColumn('number', 'Tracks');
+
+       var data = google.visualization.arrayToDataTable([
+         ['Hostility', 'Track(s)',{role: 'style'}],
+         ['Hostile', @hostileCount, 'red'], 
+         ['Friendly', @friendlyCount, 'green'],            // RGB value
+         ['Neutral', @neutralCount, 'blue']
+      ]);
+
+      var options2 = {
+      title: 'Tracks by Hostility',
+       backgroundColor: 'transparent',
+        legend:{position:'none'},
+        'chartArea': {'width': '100%', 'height': '80%'},
+        'width': 230,
+        'height': 230,
+         hAxis: {  textStyle:{color: '#FFF'} },
+         titleTextStyle: {
+    color: '#337AB7'
+}
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('hostility_div'));
+
+      chart.draw(data, options2);
+    }
+</script>
+
+
+
+  </body>
+
+</html>

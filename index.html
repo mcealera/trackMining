@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Analitycs</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/resume.min.css" rel="stylesheet">
+
+        <style>
+       #map {
+        height: 1000px;
+        width: 100%;
+       }
+    </style>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand-lg bg-light bg-dark fixed-top" id="sideNav">
+
+    <div class="btn-group-vertical btn-block">
+
+
+
+        <button  type="button" class="btn btn-info bg-dark btn-block" data-toggle="collapse" data-target="#demo3">Tracks</button>
+        <div id="demo3" class="collapse">  
+        Tracking info     
+        </div>
+
+        <button  type="button" class="btn btn-info bg-dark btn-block" data-toggle="collapse" data-target="#demo">Clusters</button>
+        <div id="demo" class="collapse"> 
+        Clustering info 
+        <br>
+        Model: @model     
+        </div>
+
+         <button type="button" class="btn btn-info bg-dark btn-block" data-toggle="collapse" data-target="#demo2">Predictions</button>
+        <div id="demo2" class="collapse">
+            Predictions
+        </div>
+      </div>
+    </nav>
+
+    
+    <div id="map" class="container-fluid p-0"></div>
+    
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/resume.min.js"></script>
+
+ <script>
+      function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          fullscreenControl: true,
+          center: {lat: 45.5405032, lng: 25.1037597}
+
+
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+
+
+
+var locations = [
+      ['y Beach', 39.386741499607410333, 1.7139373122009855521]
+    ];
+
+
+
+
+ var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+    }
+
+var triangleCoords = 
+[{lat: 46.733978, lng: 23.285381},{lat: 46.725136, lng: 23.270743},{lat: 46.645054, lng: 23.193424},{lat: 46.523666, lng: 23.199096},{lat: 46.394962, lng: 23.42514},{lat: 46.409157, lng: 23.449919},{lat: 46.426159, lng: 23.455},{lat: 46.734005, lng: 23.285673},]
+;
+
+        // Construct the polygon.
+        var bermudaTriangle = new google.maps.Polygon({
+          paths: triangleCoords,
+          id: 'cluster1',
+          trkNumber: '5',
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+
+        bermudaTriangle.setMap(map);
+
+        bermudaTriangle.addListener('click', showArrays);
+
+        infoWindow = new google.maps.InfoWindow;var triangleCoords = 
+[{lat: 44.734953, lng: 28.070146},{lat: 44.246704, lng: 27.934284},{lat: 44.159657, lng: 28.601765},{lat: 44.164287, lng: 28.624743},{lat: 44.182893, lng: 28.648475},{lat: 44.239152, lng: 28.627212},{lat: 44.918854, lng: 28.141306},]
+;
+
+        // Construct the polygon.
+        var bermudaTriangle = new google.maps.Polygon({
+          paths: triangleCoords,
+          id: 'cluster6',
+          trkNumber: '4',
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+
+        bermudaTriangle.setMap(map);
+
+        bermudaTriangle.addListener('click', showArrays);
+
+        infoWindow = new google.maps.InfoWindow;var triangleCoords = 
+[{lat: 46.947776, lng: 22.517074},{lat: 46.669495, lng: 22.517344},{lat: 46.52211, lng: 22.552055},{lat: 46.471025, lng: 22.703045},{lat: 46.661499, lng: 22.927292},{lat: 46.954723, lng: 22.810638},]
+;
+
+        // Construct the polygon.
+        var bermudaTriangle = new google.maps.Polygon({
+          paths: triangleCoords,
+          id: 'cluster5',
+          trkNumber: '12',
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+
+        bermudaTriangle.setMap(map);
+
+        bermudaTriangle.addListener('click', showArrays);
+
+        infoWindow = new google.maps.InfoWindow;var triangleCoords = 
+[{lat: 45.571907, lng: 24.971684},{lat: 45.109379, lng: 25.593013},{lat: 45.028488, lng: 25.799719},{lat: 45.49907, lng: 25.933617},{lat: 45.896797, lng: 25.706347},{lat: 45.896828, lng: 25.706287},]
+;
+
+        // Construct the polygon.
+        var bermudaTriangle = new google.maps.Polygon({
+          paths: triangleCoords,
+          id: 'cluster4',
+          trkNumber: '7',
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+
+        bermudaTriangle.setMap(map);
+
+        bermudaTriangle.addListener('click', showArrays);
+
+        infoWindow = new google.maps.InfoWindow;var triangleCoords = 
+[{lat: 45.341114, lng: 22.720791},{lat: 45.248761, lng: 22.882672},{lat: 45.339489, lng: 22.895458},{lat: 45.38043, lng: 22.869252},{lat: 45.389359, lng: 22.777935},]
+;
+
+        // Construct the polygon.
+        var bermudaTriangle = new google.maps.Polygon({
+          paths: triangleCoords,
+          id: 'cluster3',
+          trkNumber: '4',
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+
+        bermudaTriangle.setMap(map);
+
+        bermudaTriangle.addListener('click', showArrays);
+
+        infoWindow = new google.maps.InfoWindow;var triangleCoords = 
+[{lat: 47.597061, lng: 24.419891},{lat: 47.423092, lng: 24.815001},{lat: 47.543221, lng: 25.008415},{lat: 47.714874, lng: 24.718363},]
+;
+
+        // Construct the polygon.
+        var bermudaTriangle = new google.maps.Polygon({
+          paths: triangleCoords,
+          id: 'cluster2',
+          trkNumber: '6',
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+
+        bermudaTriangle.setMap(map);
+
+        bermudaTriangle.addListener('click', showArrays);
+
+        infoWindow = new google.maps.InfoWindow;
+
+
+$('#clusterButton').on('click', function (e) {
+
+    bermudaTriangle.setMap(null);
+})
+
+
+
+  /** @this {google.maps.Polygon} */
+      function showArrays(event) {
+
+        var contentString = '<b>'+this.id+'</b><br>' +
+            '<br>'+
+            'Clicked location: <br>' + 'Latitude: ' + event.latLng.lat().toFixed(3) + '<br> Longitude: ' + event.latLng.lng().toFixed(3) +
+            '<br>'+
+            '<br>'+
+            'Track number: '+this.trkNumber;
+
+        // Replace the info window's content and position.
+        infoWindow.setContent(contentString);
+        infoWindow.setPosition(event.latLng);
+
+        infoWindow.open(map);
+      }
+
+       var mapLabel = new MapLabel({
+        text: 'Test',
+        position: new google.maps.LatLng(47.597061, 24.419891),
+        map: map,
+        fontSize: 35,
+        align: 'right'
+    });
+
+
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRCWF1itBJ2QzYFVZnFvggBqzPykiIKNo&callback=initMap">
+    </script>
+    <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/maplabel/src/maplabel.js"></script>
+
+
+
+  </body>
+
+</html>

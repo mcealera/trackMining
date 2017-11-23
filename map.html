@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Analitycs</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/resume.min.css" rel="stylesheet">
+
+        <style>
+       #map {
+        height: 100vh;
+        width: 100%;
+       }
+
+        #legend {
+        font-family: Arial, sans-serif;
+        background: #fff;
+        padding: 10px;
+        margin: 10px;
+        border: 3px solid #000;
+      }
+      #legend h3 {
+        margin-top: 0;
+      }
+      #legend img {
+        vertical-align: middle;
+      }
+
+       ul {
+   list-style: none;
+}
+
+       li {
+   list-style: none;
+   display:inline;
+}
+
+         .h3color{
+    color: #337AB7;
+}
+         .h3bordercolor{
+    color: #337AB7;
+}
+        .h3colorSmall{
+    color: #337AB7;
+    font-size: 1em;
+}
+        .navbar-btn {
+      width: 255px; 
+      margin-right: 5px;
+    }
+    .floatleft {
+    float:left;
+}
+.icon-car {
+  background-image: url('../fonts/icon.png');
+  background-position: center center;
+  height: 14px;
+  width: 14px;
+}
+    .navbar-default { border-color: pink !important; }
+/* Title */
+.navbar-brand {
+    color: #337AB7;
+}
+
+.ico-text {
+     display:inline-block;
+  vertical-align: 10px;
+}
+ul li {display: inline-block; float: left; text-align: left; }
+.navbar-brand:hover,
+.navbar-brand:focus {
+    color: #337AB7;
+}
+    </style>
+
+  </head>
+
+  <body id="page-top">
+
+  <nav class="navbar bg-dark fixed-top" id="sideNav2">
+
+    <div class="nav navbar-left" id="myGroup">
+      <button  type="button" class="btn btn-info bg-dark navbar-btn myButton" data-toggle="collapse" data-target="#demo3">Tracks</button>
+       <button  type="button" class="btn btn-info bg-dark navbar-btn myButton" data-toggle="collapse" data-target="#demo3" autofocus="true" >Tracks</button>
+        <button  type="button" class="btn btn-info bg-dark navbar-btn myButton" data-toggle="collapse" data-target="#demo5">Clusters</button>
+        <button  type="button" class="btn btn-info bg-dark navbar-btn myButton" data-toggle="collapse" data-target="#demo2">Predictions</button>
+        <button  type="button" class="btn btn-info bg-dark navbar-btn myButton" data-toggle="collapse" data-target="#demo6">Patterns & Anomalies</button>
+    </div>
+
+    <ul class="nav navbar-right">
+         <li><a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="The geographic area selected for the analysis." href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;</li>
+       <li>Focus area:&emsp;</li>
+        
+      <li class="dropdown">
+        <a class="dropdown-toggle h3color" data-toggle="dropdown" href="#">Romania
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#" class="h3color">Romania</a></li>
+        </ul>
+      </li>
+  
+    </ul>
+
+    <ul class="nav navbar-right">
+             <li><a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="The most recent update to track data." href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;</li>
+      <li>Updated 2017-11-23 12:01 </li>
+    </ul>
+
+  </nav>
+
+    <nav class="navbar navbar-expand-lg bg-dark fixed-top" id="sideNav">
+
+    <div class="navbar-header">
+      <u><a class="navbar-brand" href="#">Analytics Dashboard</a></u>
+    </div>
+
+    <div class="btn-group-vertical btn-block accordition-group">
+
+
+        <div id="demo3" class="collapse show text-left">  
+          <div class="text-center h3color">Track Information<br></div>
+        <br>Dataset Size: 440 tracks &emsp;&emsp;&emsp;
+        <br>Oldest Track: 06/01/2017
+        <br>Newest Track: 07/29/2017
+        <br>Days: 58
+        <br>Avg. Tracks per Day: 7
+        <br> <a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="The ratio of hostile tracks to the total number of tracks" href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;Hostility Rate: 17 %
+        <br><div class="text-left" >
+          <div id="piechart"></div> 
+          <div id="hostility_div"></div>
+          <div id="weather_div"></div>
+
+        </div> 
+        </div>
+
+        <div id="demo5" class="collapse text-left">
+          <div class="text-center h3color"> <a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="Machine-learning assisted track clustering and zoning, using EM (Expectation Maximization) and QuickHull algorithms" href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;Clustering Information<br></div>
+          <br>Number of Clusters: 6   
+          <br>Avg. tracks per cluster: 73
+          <br>
+          <br><label><input id="chk1" type="checkbox" checked data-toggle="toggle"> Show Hot Zones &emsp;&emsp; &emsp; &emsp; &emsp; </label>
+          <br>
+          <br>
+          <div class="text-left" >
+          <div id="clusterChart"></div> 
+          <div id="clusterHostilityData"></div> 
+        </div> 
+        </div>
+
+          <div id="demo6" class="collapse text-left">
+          <div class="text-center h3color">Patterns & Anomalies<br></div>
+      <br>
+      <ul class="nav navbar-left">
+
+      <li><a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="Outliers are data objects that do not comply with the general behavior of model of data. Outlier sensitivy is the variation, compared to the average calculated for the selected data, that will define an outlier." href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;</li>
+
+       <li>Outlier sensitivity:&emsp;&emsp;</li>
+
+      <li class="dropdown">
+        <a class="dropdown-toggle h3color" data-toggle="dropdown" href="#">20%
+          <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li class="text-right"><a href="#" class="h3color">20%</a></li>
+        </ul>
+      </li>
+    </ul>
+      <ul class="nav navbar-left">
+      <li><a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="The time period used in the analysis." href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;</li>
+       <li>Period: &emsp;</li>
+      <li class="dropdown">
+        <a class="dropdown-toggle h3color" data-toggle="dropdown" href="#">All time(58 days)
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#" class="h3color">All time(58 days)</a></li>
+        </ul>
+      </li>
+     
+    </ul>
+
+          <br><a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="Can refer to activity (track numbers), hostility, speed, duration, distance or time" href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;Possisble anomalies in:&emsp;&emsp; &emsp;
+          <br>cluster6 track number significantly higher than average (152 > 73 )
+<br><br>cluster5 hostiliy higher than average (25% > 18%)
+<br><br>cluster4 avg. track distance higher than average (57Km > 42Km)
+<br><br>cluster2 hostiliy higher than average (25% > 18%)
+<br><br>cluster2 avg. track distance higher than average (72Km > 42Km)
+<br><br>
+
+    
+        </div>
+
+        <div id="demo2" class="collapse text-left">
+          <div class="text-center h3color">Predicted Activity<br></div>
+          <br>
+           <div class="text-left h3color">
+            <a class="h3color" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="Prediction based on historical day-of-week activity, sector(cluster) activity and hostility and forecasted weather" href="#">
+      <i class="fa fa-info-circle"></i></a>&nbsp;Tomorrow</div>
+            Weather Forecast: Rainy
+            <br>Estimated Tracks: 0
+            <br>
+            <div id="chart_div"></div>
+            <br><label><input id="chk2" type="checkbox" data-toggle="toggle"> Show Estimated Hot Zones</label>
+          <br><br>
+           <div class="text-left h3color">Next Week</div>
+          Estimated Tracks: 55
+            <br><label><input id="chk3" type="checkbox" data-toggle="toggle"> Show Estimated Hot Zones</label>
+            <br><br>
+        </div>
+
+
+
+      </div>
+    </nav>
+    
+    <div id="map" class="container-fluid p-0 bg-dark"></div>
+     <div id="legend"><h3>Clusters</h3></div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="https://github.com/HubSpot/tether/blob/master/dist/js/tether.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/resume.min.js"></script>
+
+ <script>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          fullscreenControl: true,
+          center: {lat: 45.5405032, lng: 25.1037597}
+        });
+
+        var polygons =[];
+        var predPolygons =[];
+
+          var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+        var icons = {
+          parking: {
+            name: 'Historical',
+            icon: 'fonts/red.png'
+          },
+          library: {
+            name: 'Tomorrow',
+            icon: 'fonts/blue.png'
+          },
+          info: {
+            name: 'Next week',
+            icon: 'fonts/green.png'
+          }
+        };
+
+         var legend = document.getElementById('legend');
+        for (var key in icons) {
+          var type = icons[key];
+          var name = type.name;
+          var icon = type.icon;
+          var div = document.createElement('div');
+          div.innerHTML = '<br><img src="' + icon + '"> ' + name+'<br>';
+          legend.appendChild(div);
+        }
+
+        map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
+
+
+var triangleCoords = 
+[{lat: 45.324471, lng: 21.87656},{lat: 45.324371, lng: 21.87649},{lat: 45.037128, lng: 21.686331},{lat: 45.248761, lng: 22.882672},{lat: 45.339489, lng: 22.895458},{lat: 45.38043, lng: 22.869252},{lat: 45.389359, lng: 22.777935},]
+;
+
+        // Construct the polygon.
+        var bermudaTriangle = new google.maps.Polygon({
+          paths: triangleCoords,
+          id: 'cluster1',
+          trkNumber: 72,
+          avgSpeed: 4.211111,
+          avgDist: 51100.445,
+          avgDur: 11357.333,
+          hostileCount: 16,
+          friendlyCount: 12,
+          neutralCount: 44,
+          hostility: 22.22222222222222,
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+
+        bermudaTriangle.setMap(map);
+
+        bermudaTriangle.addListener('click', showArrays);
+
+        polygons.push(bermudaTriangle);
+
+        infoWindow = new google.maps.InfoWindow;var triangleCoords = 
+[{lat: 46.947776, lng: 22.517074},{lat: 46.669495, lng: 22.517344},{lat: 46.52211, lng: 22.552055},{lat: 46.471025, lng: 22.703045},{lat: 46.394962, lng: 23.42514},{lat: 46.409157, lng: 23.449919},{lat: 46.426159, lng: 23.455},{lat: 46.734005, lng: 23.285673},{lat: 46.954723, lng: 22.810638},]
+;
+
+        // Construct the polygon.
+        var bermudaTriangle = new google.maps.Polygon({
+          paths: triangleCoords,
+          id: 'cluster6',
+          trkNumber: 152,
+          avgSpeed: 3.6731596,
+          avgDist: 21248.158,
+          avgDur: 7170.737,
+          hostileCount: 25,
+          friendlyCount: 36,
+          neutralCount: 91,
+          hostility: 16.44736842105263,
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+
+        bermudaTriangle.setMap(map);
+
+        bermudaTriangle.addListener('click', showArrays);
+
+        polygons.push(bermudaTriangle);
+
+        infoWindow = new google.maps.InfoWindow;var triangleCoords = 
+[{lat: 44.734953, lng: 28.070146},{lat: 44.246704, lng: 27.934284},{lat: 44.159657, lng: 28.601765},{lat: 44.164287, lng: 28.624743},{lat: 44.182893, lng: 28.648475},{lat: 44.239152, lng: 28.627212},{lat: 44.918854, lng: 28.141306},]
+;
+
+        // Construct the polygon.
+        var bermudaTriangle = new google.maps.Polygon({
+          paths: triangleCoords,
+          id: 'cluster5',
+          trkNumber: 40,
+          avgSpeed: 4.5479994,
+          avgDist: 29089.2,
+          avgDur: 5732.2,
+          hostileCount: 10,
+          friendlyCount: 6,
+          neutralCount: 24,
+          hostility: 25.0,
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+
+        bermudaTriangle.setMap(map);
+
+        bermudaTriangle.addListener('click', showArrays);
+
+        polygons.push(bermudaTriangle);
+
+        infoWindow = new google.maps.InfoWindow;var triangleCoords = 
+[{lat: 45.571907, lng: 24.971684},{lat: 45.109379, lng: 25.593013},{lat: 45.028488, lng: 25.799719},{lat: 45.49907, lng: 25.933617},{lat: 45.896797, lng: 25.706347},{lat: 45.896828, lng: 25.706287},]
+;
+
+        // Construct the polygon.
+        var bermudaTriangle = new google.maps.Polygon({
+          paths: triangleCoords,
+          id: 'cluster4',
+          trkNumber: 88,
+          avgSpeed: 3.908184,
+          avgDist: 57906.453,
+          avgDur: 15350.909,
+          hostileCount: 13,
+          friendlyCount: 16,
+          neutralCount: 59,
+          hostility: 14.772727272727273,
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+
+        bermudaTriangle.setMap(map);
+
+        bermudaTriangle.addListener('click', showArrays);
+
+        polygons.push(bermudaTriangle);
+
+        infoWindow = new google.maps.InfoWindow;var triangleCoords = 
+[{lat: 47.597061, lng: 24.419891},{lat: 47.423092, lng: 24.815001},{lat: 47.543221, lng: 25.008415},{lat: 47.714874, lng: 24.718363},]
+;
+
+        // Construct the polygon.
+        var bermudaTriangle = new google.maps.Polygon({
+          paths: triangleCoords,
+          id: 'cluster3',
+          trkNumber: 56,
+          avgSpeed: 1.7228568,
+          avgDist: 24328.857,
+          avgDur: 14379.857,
+          hostileCount: 5,
+          friendlyCount: 10,
+          neutralCount: 41,
+          hostility: 8.928571428571429,
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+
+        bermudaTriangle.setMap(map);
+
+        bermudaTriangle.addListener('click', showArrays);
+
+        polygons.push(bermudaTriangle);
+
+        infoWindow = new google.maps.InfoWindow;var triangleCoords = 
+[{lat: 45.780029, lng: 21.2353},{lat: 45.732906, lng: 21.258501},{lat: 45.63528, lng: 21.449744},{lat: 45.648098, lng: 21.607533},{lat: 45.836647, lng: 21.381953},{lat: 45.880157, lng: 21.293555},]
+;
+
+        // Construct the polygon.
+        var bermudaTriangle = new google.maps.Polygon({
+          paths: triangleCoords,
+          id: 'cluster2',
+          trkNumber: 32,
+          avgSpeed: 6.7075014,
+          avgDist: 72112.25,
+          avgDur: 10813.5,
+          hostileCount: 8,
+          friendlyCount: 6,
+          neutralCount: 18,
+          hostility: 25.0,
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+
+        bermudaTriangle.setMap(map);
+
+        bermudaTriangle.addListener('click', showArrays);
+
+        polygons.push(bermudaTriangle);
+
+        infoWindow = new google.maps.InfoWindow;
+
+
+
+
+$('#clusterButton').on('click', function (e) {
+
+    bermudaTriangle.setMap(null);
+})
+
+$(".myButton").click( function(e) {
+    jQuery('.collapse').collapse('hide');
+});
+
+$(".nav a").on("click", function(){
+   $(".nav").find(".active").removeClass("active");
+   $(this).parent().addClass("active");
+});
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+
+
+
+
+  /** @this {google.maps.Polygon} */
+      function showArrays(event) {
+
+        var contentString = '<b>'+this.id+'</b><br>' +
+            '<br>'+
+            'Number of tracks: '+this.trkNumber+
+            '<br>'+
+            '<br>'+
+            'Hostile: '+this.hostileCount+ 
+            '<br>'+
+            'Friendly: '+this.friendlyCount+ 
+            '<br>'+
+            'Neutral: '+this.neutralCount+ 
+            '<br>'+
+            '<br>'+
+            'Hostility: '+this.hostility.toFixed(1)+ ' %'+
+            '<br>'+
+            '<br>'+
+            'Surface area: '+(google.maps.geometry.spherical.computeArea(this.getPath())/1000000).toFixed(1)+ ' Square Kms'+
+            '<br>'+
+            '<br>'+
+            'Avg. Track Speed: '+this.avgSpeed.toFixed(2)+ ' m/s'+
+            '<br>'+
+            'Avg. Track Length: '+(this.avgDist/1000).toFixed(0)+ ' Km'+
+            '<br>'+
+            'Avg. Track Duration: '+(this.avgDur/60).toFixed(0)+' min'+
+            '<br>'+
+            '<br>'+
+            'Clicked location: <br>' + 'Latitude: ' + event.latLng.lat().toFixed(3) + '<br> Longitude: ' + event.latLng.lng().toFixed(3);
+
+
+            
+
+        // Replace the info window's content and position.
+        infoWindow.setContent(contentString);
+        infoWindow.setPosition(event.latLng);
+
+        infoWindow.open(map);
+      }
+
+
+          function showArrays2(event) {
+
+        var contentString = '<b>'+this.id+' (predicted)'+'</b><br>' +
+            '<br>'+
+            'Estimation: '+this.estNumTracks.toFixed(0)+ ' track(s)'+  
+            '<br>'+
+              this.trkNumber.toFixed(2)+ ' % of predicted tracks.' +       
+            '<br>'+
+            '<br>'+
+            'Surface area: '+(google.maps.geometry.spherical.computeArea(this.getPath())/1000000).toFixed(1)+ ' Square Kms'+
+            '<br>'+  
+            '<br>'+
+            'Avg. Track Speed: '+this.avgSpeed.toFixed(2)+ ' m/s'+
+            '<br>'+
+            'Avg. Track Length: '+(this.avgDist/1000).toFixed(0)+ ' Km'+
+            '<br>'+
+            'Avg. Track Duration: '+(this.avgDur/60).toFixed(0)+' min'+
+            '<br>'+
+            '<br>'+
+            'Clicked location: <br>' + 'Latitude: ' + event.latLng.lat().toFixed(3) + '<br> Longitude: ' + event.latLng.lng().toFixed(3);
+
+        // Replace the info window's content and position.
+        infoWindow.setContent(contentString);
+        infoWindow.setPosition(event.latLng);
+
+        infoWindow.open(map);
+      }
+
+      $('#chk1').change(function() {
+
+        if($(this).prop('checked')){
+        for(i=0; i<polygons.length;i++){
+          polygons[i].setMap(map);
+        }}
+        else{
+           for(i=0; i<polygons.length;i++){
+          polygons[i].setMap(null);
+        }
+        }
+})
+
+           $('#chk2').change(function() {
+
+        if($(this).prop('checked')){
+        for(i=0; i<predPolygons.length;i++){
+          predPolygons[i].setMap(map);
+        }}
+        else{
+           for(i=0; i<predPolygons.length;i++){
+          predPolygons[i].setMap(null);
+        }
+        }
+})
+
+
+
+
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawClusterHostility);
+    google.charts.setOnLoadCallback(drawClusterChart);
+
+      function drawClusterChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Cluster', 'Count']
+       ,['cluster1',72],['cluster6',152],['cluster5',40],['cluster4',88],['cluster3',56],['cluster2',32]
+        ]);
+
+        var options = {
+            title: 'Tracks by Cluster',
+          backgroundColor: 'transparent',
+          legend:{position:'labeled',textStyle: {color: '#fff'}},
+          pieSliceText: 'none',
+          'width': 230,
+               'height': 240,
+               'chartArea': {'width': '100%', 'height': '80%'},
+               pieHole: 0.4,
+               titleTextStyle: {
+    color: '#337AB7'
+}
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('clusterChart'));
+
+
+google.visualization.events.addListener(chart, 'select', selectHandler);
+      chart.draw(data, options);
+
+
+
+ function selectHandler() {
+    var selectedItem = chart.getSelection()[0];
+    if (selectedItem) {
+      var value = data.getValue(selectedItem.row, 0);
+    
+
+      for(i=0; i<polygons.length;i++){
+        polygons[i].setOptions({strokeWeight: 2.0}); 
+          if(polygons[i].id==value){
+            polygons[i].setOptions({strokeWeight: 6.0});       
+          }
+        }
+
+    }
+  }
+
+
+}
+
+
+
+    function drawClusterHostility() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Cluster');
+      data.addColumn('number', 'Hostility');
+
+       var data = google.visualization.arrayToDataTable([
+         ['Cluster', 'Track(s)',{role: 'annotation'}]
+         ,['cluster1',0.2222222222222222,'cluster1'],['cluster6',0.1644736842105263,'cluster6'],['cluster5',0.25,'cluster5'],['cluster4',0.14772727272727273,'cluster4'],['cluster3',0.08928571428571429,'cluster3'],['cluster2',0.25,'cluster2']
+      ]);
+
+    var formatter = new google.visualization.NumberFormat({ pattern:'#%' });
+    formatter.format(data, 1);
+
+      var options2 = {
+      title: 'Hostility by cluster',
+       backgroundColor: 'transparent',
+        'chartArea': {'width': '100%', 'height': '80%'},
+        'width': 230,
+         legend:{position:'none'},
+        'height': 240,
+         hAxis: {  textStyle:{color: '#FFF'},format: '#%' },
+         titleTextStyle: {
+        color: '#337AB7'
+}
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById('clusterHostilityData'));
+
+
+   
+
+      google.visualization.events.addListener(chart, 'select', selectHandler);
+      chart.draw(data, options2);
+
+
+
+ function selectHandler() {
+    var selectedItem = chart.getSelection()[0];
+    if (selectedItem) {
+      var value = data.getValue(selectedItem.row, 0);
+    
+
+      for(i=0; i<polygons.length;i++){
+        polygons[i].setOptions({strokeWeight: 2.0}); 
+          if(polygons[i].id==value){
+            polygons[i].setOptions({strokeWeight: 6.0});       
+          }
+        }
+
+    }
+  }
+
+
+    }
+
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRCWF1itBJ2QzYFVZnFvggBqzPykiIKNo&callback=initMap">
+    </script>
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Day', 'Count'],
+          ['Mon', 59],
+          ['Tue', 70],
+          ['Wed', 56],
+          ['Thu', 79],
+          ['Fri', 54],
+          ['Sat', 58],
+          ['Sun', 64]
+        ]);
+
+        var options = {
+            title: 'Tracks by Day',
+          backgroundColor: 'transparent',
+          legend:{position:'none'},
+          'width': 230,
+               'height': 230,
+               'chartArea': {'width': '100%', 'height': '80%'},
+               pieHole: 0.4,
+               titleTextStyle: {
+    color: '#337AB7'
+}
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+}
+      
+    </script>
+
+     <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+     
+      
+    </script>
+
+
+
+  <script type="text/javascript">
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart2);
+
+    function drawChart2() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('timeofday', 'Time of Day');
+      data.addColumn('number', 'Tracks');
+
+       var data = google.visualization.arrayToDataTable([
+        ['Hour', 'Track(s)'],
+         ['00:00', 0], 
+         ['02:00', 0],            // RGB value
+         ['04:00', 21],            // English color name
+         ['06:00', 55],
+       ['08:00', 51 ],
+       ['10:00', 46],
+       ['12:00', 49 ],
+       ['14:00', 56 ],
+       ['16:00', 52 ],
+       ['18:00', 52 ],
+       ['20:00', 58],
+       ['22:00', 0]
+      ]);
+
+    var options2 = {
+      title: 'Probability by hour',
+       backgroundColor: 'transparent',
+        'chartArea': {'width': '82%', 'height': '75%'},
+        'width': 250,
+         legend:{position:'none'},
+        'height': 240,
+         vAxis: {  textStyle:{color: '#FFF'},viewWindowMode: 'pretty', slantedText: true },
+         hAxis: {  textStyle:{color: '#FFF'},viewWindowMode: 'pretty', slantedText: true },
+         titleTextStyle: {
+        color: '#337AB7'
+},
+ seriesType: 'bars',
+      series: {1: {type: 'line'}}
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+
+      chart.draw(data, options2);
+    }
+</script>
+
+<script type="text/javascript">
+
+        google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart3);
+
+    function drawChart3() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Weather');
+      data.addColumn('number', 'Tracks');
+
+       var data = google.visualization.arrayToDataTable([
+          ['Hour', 'Track(s)'],
+         ['Sunny', 264], 
+         ['Overcast', 126],            // RGB value
+         ['Rainy', 50]
+      ]);
+
+      var options2 = {
+      title: 'Tracks by Weather Conditions',
+       backgroundColor: 'transparent',
+                titlePosition: 'center',
+        legend:{position:'none'},
+        'chartArea': {'width': '100%', 'height': '80%'},
+        'width': 230,
+        'height': 230,
+         hAxis: {  textStyle:{color: '#FFF'} },
+         titleTextStyle: {
+    color: '#337AB7'
+}
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('weather_div'));
+
+      chart.draw(data, options2);
+    }
+</script>
+
+
+
+
+<script type="text/javascript">
+
+ 
+
+
+
+
+
+
+</script>
+
+
+<script type="text/javascript">
+
+        google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart4);
+
+    function drawChart4() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Weather');
+      data.addColumn('number', 'Tracks');
+
+       var data = google.visualization.arrayToDataTable([
+         ['Hostility', 'Track(s)',{role: 'style'}],
+         ['Hostile', 77, 'red'], 
+         ['Friendly', 86, 'green'],            // RGB value
+         ['Neutral', 277, 'blue']
+      ]);
+
+      var options2 = {
+      title: 'Tracks by Hostility',
+       backgroundColor: 'transparent',
+        legend:{position:'none'},
+        'chartArea': {'width': '100%', 'height': '80%'},
+        'width': 230,
+        'height': 230,
+         hAxis: {  textStyle:{color: '#FFF'} },
+         titleTextStyle: {
+    color: '#337AB7'
+}
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('hostility_div'));
+
+      chart.draw(data, options2);
+    }
+</script>
+
+
+
+  </body>
+
+</html>
